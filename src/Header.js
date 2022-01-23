@@ -3,56 +3,64 @@ import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Link } from 'react-router-dom'
+import { useStateValue } from './StateProvider'
 
 function Header() {
-  return (
-    <HeaderContainer>
-        <Link to='/'>
-            <Logo src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' alt='amazon' />
-        </Link>
 
-        <Search>
-            <SearchInput type='text' />
-            <SearchButton />
-        </Search>
+    const [{ basket }] = useStateValue();
 
-        <HeaderNav>
-            <Option>
-                <OptionLine1>
-                    Hello
-                </OptionLine1>
-                <OptionLine2>
-                    Sign In
-                </OptionLine2>
-            </Option>
+    console.log('Basket is ', basket)
 
-            <Option>
-                <OptionLine1>
-                    Returns
-                </OptionLine1>
-                <OptionLine2>
-                    & Orders 
-                </OptionLine2>
-            </Option>
+    return (
+        <HeaderContainer>
+            <Link to='/'>
+                <Logo src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' alt='amazon' />
+            </Link>
 
-            <Option>
-                <OptionLine1>
-                    Your
-                </OptionLine1>
-                <OptionLine2>
-                    Prime
-                </OptionLine2>
-            </Option>
+            <Search>
+                <SearchInput type='text' />
+                <SearchButton />
+            </Search>
 
-            <OptionBasket>
-                <BasketButton />
-                <BasketCount>
-                    0
-                </BasketCount>
-            </OptionBasket>
-        </HeaderNav>
-    </HeaderContainer>
-  );
+            <HeaderNav>
+                <Option>
+                    <OptionLine1>
+                        Hello
+                    </OptionLine1>
+                    <OptionLine2>
+                        Sign In
+                    </OptionLine2>
+                </Option>
+
+                <Option>
+                    <OptionLine1>
+                        Returns
+                    </OptionLine1>
+                    <OptionLine2>
+                        & Orders 
+                    </OptionLine2>
+                </Option>
+
+                <Option>
+                    <OptionLine1>
+                        Your
+                    </OptionLine1>
+                    <OptionLine2>
+                        Prime
+                    </OptionLine2>
+                </Option>
+
+                <Link to='/checkout'>
+                    <OptionBasket>
+                        <BasketButton />
+                        <BasketCount>
+                            {basket?.length}
+                        </BasketCount>
+                    </OptionBasket>
+                </Link>
+            </HeaderNav>
+        </HeaderContainer>
+    );
 }
 
 export default Header;

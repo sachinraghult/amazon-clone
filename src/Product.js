@@ -1,31 +1,49 @@
 import React from 'react';
 import styled from 'styled-components'
+import { useStateValue } from './StateProvider'
 
 function Product({id, title, price, rating, image}) {
-  return (
-      <ProductContainer>
-          <ProductInfo>
-              <ProductTitle>
-                {title}
-              </ProductTitle>
-              <ProductPrice>
-                <small>$</small>
-                <strong>{price}</strong>
-              </ProductPrice>
-              <ProductRating>
-                {Array(rating)
-                 .fill()
-                 .map((_, i) => (
-                    <p>⭐</p>
-                 ))}
-              </ProductRating>
-              <ProductImage src={image} alt='' />
-              <Basket>
-                <BasketButton>Add to Basket</BasketButton>
-              </Basket>
-          </ProductInfo>
-      </ProductContainer>
-  );
+
+    const [state, dispatch] = useStateValue();
+
+    const addToBasket = () => {
+        //dispatch the item into the data layer
+        dispatch({
+            type: 'ADD_TO_BASKET',
+            item: {
+                id: id,
+                title: title,
+                image: image,
+                price: price,
+                rating: rating,
+            }
+        })
+    }
+
+    return (
+        <ProductContainer>
+            <ProductInfo>
+                <ProductTitle>
+                    {title}
+                </ProductTitle>
+                <ProductPrice>
+                    <small>$</small>
+                    <strong>{price}</strong>
+                </ProductPrice>
+                <ProductRating>
+                    {Array(rating)
+                    .fill()
+                    .map((_, i) => (
+                        <p>⭐</p>
+                    ))}
+                </ProductRating>
+                <ProductImage src={image} alt='' />
+                <Basket>
+                    <BasketButton onClick={addToBasket}>Add to Basket</BasketButton>
+                </Basket>
+            </ProductInfo>
+        </ProductContainer>
+    );
 }
 
 export default Product;

@@ -1,32 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
 import CurrencyFormat from 'react-currency-format';
+import { useStateValue } from './StateProvider'
 
 function Subtotal() {
-  return (
-    <SubtotalContainer>
-        <CurrencyFormat
-        renderText={(value) => (
-            <>
-                <p>
-                    Subtotal (0 items): <strong>{value}</strong>
-                </p>
-                <SubtotalGift>
-                    <input type="checkbox" /> This order contains a gift
-                </SubtotalGift>
-            </>
-        )}
 
-        value={1900.99}
-        decimalScale={2}
-        thousandSeparator={true}
-        prefix={"$"}
-        displayType={"text"}
-        />
+    const [{ basket }, dispatch] = useStateValue();
 
-        <CheckoutButton>Proceed to Checkout</CheckoutButton>
-    </SubtotalContainer>
- );
+    return (
+        <SubtotalContainer>
+            <CurrencyFormat
+            renderText={(value) => (
+                <>
+                    <p>
+                        Subtotal ({basket.length} items): <strong>{value}</strong>
+                    </p>
+                    <SubtotalGift>
+                        <input type="checkbox" /> This order contains a gift
+                    </SubtotalGift>
+                </>
+            )}
+            
+            value={0}
+            decimalScale={2}
+            thousandSeparator={true}
+            prefix={"$"}
+            displayType={"text"}
+            />
+
+            <CheckoutButton>Proceed to Checkout</CheckoutButton>
+        </SubtotalContainer>
+    );
 }
 
 export default Subtotal;

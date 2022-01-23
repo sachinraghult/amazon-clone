@@ -11,7 +11,6 @@ function Checkout() {
                 <CheckoutTitle>Your Shopping Basket</CheckoutTitle>
             </div>
           </CheckoutLeft>
-
           <CheckoutRight>
             <Subtotal/>
           </CheckoutRight>
