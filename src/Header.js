@@ -9,8 +9,6 @@ function Header() {
 
     const [{ basket }] = useStateValue();
 
-    console.log('Basket is ', basket)
-
     return (
         <HeaderContainer>
             <Link to='/'>
