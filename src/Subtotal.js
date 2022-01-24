@@ -6,7 +6,7 @@ import { getBasketTotal } from './reducer';
 
 function Subtotal() {
 
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket }, ] = useStateValue();
 
     return (
         <SubtotalContainer>
@@ -25,7 +25,8 @@ function Subtotal() {
             value={getBasketTotal(basket)}
             decimalScale={2}
             thousandSeparator={true}
-            prefix={"$"}
+            thousandSpacing='2s'
+            prefix={"₹"}
             displayType={"text"}
             />
 
@@ -66,4 +67,5 @@ const CheckoutButton = styled.button`
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
+    cursor: pointer;
 `

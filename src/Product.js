@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
 import { useStateValue } from './StateProvider'
+import CurrencyFormat from 'react-currency-format';
 
 function Product({id, title, price, rating, image}) {
 
-    const [state, dispatch] = useStateValue();
+    const [, dispatch] = useStateValue();
 
     const addToBasket = () => {
         //dispatch the item into the data layer
@@ -21,28 +22,42 @@ function Product({id, title, price, rating, image}) {
     }
 
     return (
-        <ProductContainer>
-            <ProductInfo>
-                <ProductTitle>
-                    {title}
-                </ProductTitle>
-                <ProductPrice>
-                    <small>$</small>
-                    <strong>{price}</strong>
-                </ProductPrice>
-                <ProductRating>
-                    {Array(rating)
-                    .fill()
-                    .map((_, i) => (
-                        <p>⭐</p>
-                    ))}
-                </ProductRating>
-                <ProductImage src={image} alt='' />
-                <Basket>
-                    <BasketButton onClick={addToBasket}>Add to Basket</BasketButton>
-                </Basket>
-            </ProductInfo>
-        </ProductContainer>
+
+        <CurrencyFormat
+            renderText={(value) => (
+                <>
+                    <ProductContainer>
+                        <ProductInfo>
+                            <ProductTitle>
+                                {title}
+                            </ProductTitle>
+                            <ProductPrice>
+                                
+                                <strong>{value}</strong>
+                            </ProductPrice>
+                            <ProductRating>
+                                {Array(rating)
+                                .fill()
+                                .map((_, i) => (
+                                    <p>⭐</p>
+                                ))}
+                            </ProductRating>
+                            <ProductImage src={image} alt='' />
+                            <Basket>
+                                <BasketButton onClick={addToBasket}>Add to Basket</BasketButton>
+                            </Basket>
+                        </ProductInfo>
+                    </ProductContainer>
+                </>
+            )}
+            
+            value={price}
+            decimalScale={2}
+            thousandSeparator={true}
+            thousandSpacing='2s'
+            prefix={"₹"}
+            displayType={"text"}
+            />
     );
 }
 
