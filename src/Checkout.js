@@ -1,21 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
 import Subtotal from './Subtotal';
+import CheckoutProduct from './CheckoutProduct';
+import { useStateValue } from './StateProvider';
 
 function Checkout() {
-  return (
-      <CheckoutContainer>
-          <CheckoutLeft>
-            <CheckoutAd src='https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg' alt='Ad' />
-            <div>
-                <CheckoutTitle>Your Shopping Basket</CheckoutTitle>
-            </div>
-          </CheckoutLeft>
-          <CheckoutRight>
-            <Subtotal/>
-          </CheckoutRight>
-      </CheckoutContainer>
-  );
+
+    const [{ basket }, dispatch] = useStateValue();
+
+    return (
+        <CheckoutContainer>
+            <CheckoutLeft>
+              <CheckoutAd src='https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg' alt='Ad' />
+              <CheckoutTitle>Your Shopping Basket</CheckoutTitle>
+                {basket.map(item => (
+                    <CheckoutProduct 
+                        id={item.id}
+                        title={item.title}
+                        price={item.price}
+                        rating={item.rating}
+                        image={item.image}
+                    />
+                ))}
+            </CheckoutLeft>
+            <CheckoutRight>
+              <Subtotal/>
+            </CheckoutRight>
+        </CheckoutContainer>
+    );
 }
 
 export default Checkout;
@@ -28,7 +40,7 @@ const CheckoutContainer = styled.div`
 `
 
 const CheckoutLeft = styled.div`
-
+    
 `
 
 const CheckoutRight = styled.div`
