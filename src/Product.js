@@ -60,6 +60,13 @@ const ProductContainer = styled.div`
     max-height: 400px;
     background-color: white;
     z-index: 1;
+
+    transition: transform 250ms ease-out;
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.35);
+    }
 `
 
 const ProductInfo = styled.div`
@@ -103,7 +110,18 @@ const BasketButton = styled.button`
     padding: 5px;
     border: 1px solid;
     margin-top: 10px;
-    border-color: #a88734 $9c7e31 #846a29;
+    border-color: #a88734 #9c7e31 #846a29;
+    border-radius: 2px;
     color: #111;
     cursor: pointer;
+
+    opacity: 0.95;
+    transition: transform 100ms ease-out;
+
+    &:hover {
+        opacity: 1;
+        font-weight: 530;
+        transform: scale(1.05);
+        box-shadow: 2px 2px 2px grey;
+    }
 `

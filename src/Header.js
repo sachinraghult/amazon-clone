@@ -106,7 +106,12 @@ const SearchInput = styled.input`
 const SearchButton = styled(SearchIcon)`
     padding: 5px;
     height: 22px !important;
-    background-color: #cd9042; 
+    background-color: #f0c14b; 
+    cursor: pointer;
+    
+    &: hover {
+        background-color: #f3a847;
+    }
 `
 
 const HeaderNav = styled.div`
@@ -120,6 +125,11 @@ const Option = styled.div`
     margin-left: 10px;
     margin-right: 10px;
     color: white;
+    cursor: pointer;
+
+    &: hover {
+        color: #f3a847;
+    }
 `
 
 const OptionLine1 = styled.a`
@@ -140,10 +150,16 @@ const OptionBasket = styled.div`
 `
 
 const BasketButton = styled(ShoppingBasketIcon)`
-
+    &: hover {
+        color: #f3a847;
+    }
 `
 
 const BasketCount = styled(OptionLine2)`
     margin-left: 10px;
     margin-right: 10px;
+
+    &: hover {
+        color: #f3a847;
+    }
 `
