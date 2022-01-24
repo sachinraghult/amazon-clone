@@ -27,7 +27,7 @@ function Checkout() {
               ) : (
                 <EmptyBasket>
                   <img
-                    src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg"
+                    src="https://i.dlpng.com/static/png/6815603_preview.png"
                     alt="Empty Basket"
                   />
                   <BasketInfo>
