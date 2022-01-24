@@ -28,6 +28,15 @@ function Header() {
             </Search>
 
             <HeaderNav>
+                <Option>
+                    <OptionLine1>
+                        
+                    </OptionLine1>
+                    <OptionLine2>
+                        <img src='https://cdn.britannica.com/97/1597-004-05816F4E/Flag-India.jpg' alt='' /> 
+                    </OptionLine2>
+                </Option>
+
                 <Link to={!user && '/login'}>
                     <Option onClick={handleAuthentication}>
                         <OptionLine1>
@@ -38,7 +47,7 @@ function Header() {
                         </OptionLine2>
                     </Option>
                 </Link>
-
+                
                 <Option>
                     <OptionLine1>
                         Returns
@@ -141,6 +150,12 @@ const OptionLine2 = styled.a`
     font-size: 13px;
     font-weight: 800;
     text-decoration-color: #131921;
+
+    img {
+        width: 25px;
+        height: 15px;
+        margin-top: 12px;
+    }
 `
 
 const OptionBasket = styled.div`
