@@ -4,10 +4,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { Link } from 'react-router-dom'
 import { useStateValue } from './StateProvider'
+import { auth } from './firebase'
 
 function Header() {
 
-    const [{ basket }] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
+
+    const handleAuthentication = () => {
+        if(user) {
+            auth.signOut();
+        }
+    }
 
     return (
         <HeaderContainer>
@@ -21,14 +28,16 @@ function Header() {
             </Search>
 
             <HeaderNav>
-                <Option>
-                    <OptionLine1>
-                        Hello
-                    </OptionLine1>
-                    <OptionLine2>
-                        Sign In
-                    </OptionLine2>
-                </Option>
+                <Link to={!user && '/login'}>
+                    <Option onClick={handleAuthentication}>
+                        <OptionLine1>
+                            Hello {user ? user.email : 'Guest'}
+                        </OptionLine1>
+                        <OptionLine2>
+                            {user ? 'Sign Out' : 'Sign In'}
+                        </OptionLine2>
+                    </Option>
+                </Link>
 
                 <Option>
                     <OptionLine1>
@@ -113,13 +122,15 @@ const Option = styled.div`
     color: white;
 `
 
-const OptionLine1 = styled.div`
+const OptionLine1 = styled.a`
     font-size: 10px;
+    text-decoration-color: #131921;
 `
 
-const OptionLine2 = styled.div`
+const OptionLine2 = styled.a`
     font-size: 13px;
     font-weight: 800;
+    text-decoration-color: #131921;
 `
 
 const OptionBasket = styled.div`
