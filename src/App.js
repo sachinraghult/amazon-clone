@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import Header from './Header';
 import Home from './Home';
+import Footer from './Footer'
 import Checkout from './Checkout';
 import Login from './Login'
 import { auth } from './firebase';
@@ -40,8 +41,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/' element={<><Header/><Home/></>} />
-          <Route path='/checkout' element={<><Header/><Checkout/></>} />
+          <Route path='/' element={<><Header/><Home/><Footer/></>} />
+          <Route path='/checkout' element={<><Header/><Checkout/><Footer/></>} />
           <Route path='/login' element={<Login/>} />
         </Routes>
       </Router>
