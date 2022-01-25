@@ -48,14 +48,16 @@ function Header() {
                     </Option>
                 </Link>
                 
-                <Option>
-                    <OptionLine1>
-                        Returns
-                    </OptionLine1>
-                    <OptionLine2>
-                        & Orders 
-                    </OptionLine2>
-                </Option>
+                <Link to={'/orders'}>
+                    <Option>
+                        <OptionLine1>
+                            Returns
+                        </OptionLine1>
+                        <OptionLine2>
+                            & Orders 
+                        </OptionLine2>
+                    </Option>
+                </Link>
 
                 <Option>
                     <OptionLine1>

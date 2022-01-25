@@ -7,6 +7,8 @@ import axios from './axios';
 import { getBasketTotal } from './reducer';
 import { useStateValue } from './StateProvider'
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import db from './firebase'
+import { doc, setDoc } from "firebase/firestore";
 
 function Payment() {
 
@@ -51,9 +53,17 @@ function Payment() {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        }).then(({ PaymentIntent }) => {
+        }).then(({ paymentIntent }) => {
             
             //paymentIntent = paymentConfirmation
+
+            const ref = doc(db, 'users', user?.uid, 'orders', paymentIntent.id)
+            setDoc(ref, {
+                basket: basket,
+                amount: paymentIntent.amount,
+                created: paymentIntent.created
+            })
+
 
             setSucceeded(true);
             setError(null);
@@ -109,7 +119,7 @@ function Payment() {
                 <PaymentSection>
                     <PaymentTitle>Payment Method</PaymentTitle>
                     <PaymentDetails>
-                        <form onSubmit={handleSubmit}>
+                        <PaymentForm onSubmit={handleSubmit}>
                             <CardElement onChange={handleChange} />
                             <PaymentPriceContainer>
                                 <CurrencyFormat
@@ -131,7 +141,7 @@ function Payment() {
 
                             {/* Error in card details */}
                             {error && <div>{error}</div>}
-                        </form>
+                        </PaymentForm>
                     </PaymentDetails>
                 </PaymentSection>
             </PaymentContainer>
@@ -159,6 +169,10 @@ const PaymentContainer = styled.div`
     }
 `
 
+const PaymentForm = styled.form`
+    max-width: 400px;
+`
+
 const PaymentSection = styled.div`
     display: flex;
     padding: 20px;
@@ -182,8 +196,25 @@ const PaymentItems = styled.div`
 
 const PaymentDetails = styled.div`
     flex: 0.8;
+
+    h3 {
+        padding-bottom: 20px;
+        margin-top: 20px;
+    }
 `
 
 const PaymentPriceContainer = styled.div`
-    
+    max-width: 400px;
+
+    button {
+        background: #f0c14b;
+        border-radius: 2px;
+        width: 100%;
+        height: 30px;
+        border: 1px solid;
+        font-weight: bolder;
+        margin-top: 10px;
+        border-color: #a88734 #9c7e31 #846a29;
+        color: #111;
+    }
 `

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useStateValue } from './StateProvider';
 import CurrencyFormat from 'react-currency-format';
 
-function CheckoutProduct({id, title, price, rating, image}) {
+function CheckoutProduct({id, title, price, rating, image, hideButton}) {
 
     const [, dispatch] = useStateValue();
 
@@ -35,7 +35,9 @@ function CheckoutProduct({id, title, price, rating, image}) {
                                     ))
                                 }
                             </ProductRating>
-                            <BasketButton onClick={removeFromBasket}>Remove from Basket</BasketButton>
+                            {!hideButton && (
+                                <BasketButton onClick={removeFromBasket}>Remove from Basket</BasketButton>
+                            )}
                         </ProductInfo>
                     </ProductContainer>
                 </>
