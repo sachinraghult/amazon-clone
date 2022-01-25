@@ -10,7 +10,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 function Payment() {
 
-    const [{ basket, user }, ] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
 
     const stripe = useStripe();
     const elements = useElements();
@@ -39,6 +39,8 @@ function Payment() {
         getClientSecret();
     }, [basket])
 
+    console.log('The SECRET IS >>>> ', clientSecret)
+
 
     const handleSubmit = async (event) => {
 
@@ -50,13 +52,18 @@ function Payment() {
                 card: elements.getElement(CardElement)
             }
         }).then(({ PaymentIntent }) => {
+            
             //paymentIntent = paymentConfirmation
 
             setSucceeded(true);
             setError(null);
             setProcessing(false);
 
-            navigate('/orders',{replace: true});
+            dispatch({
+                type: 'EMPTY_BASKET'
+            })
+
+            navigate('/orders', {return: true});
         })
     }
 
