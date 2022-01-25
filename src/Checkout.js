@@ -27,7 +27,7 @@ function Checkout() {
               ) : (
                 <EmptyBasket>
                   <img
-                    src="https://i.dlpng.com/static/png/6815603_preview.png"
+                    src="https://www.bardanstore.com/_nuxt/img/d0bcbce.png"
                     alt="Empty Basket"
                   />
                   <BasketInfo>
