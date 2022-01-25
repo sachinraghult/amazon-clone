@@ -4,6 +4,7 @@ import Header from './Header';
 import Home from './Home';
 import Footer from './Footer'
 import Checkout from './Checkout';
+import Payment from './Payment';
 import Login from './Login'
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -42,8 +43,9 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<><Header/><Home/><Footer/></>} />
-          <Route path='/checkout' element={<><Header/><Checkout/><Footer/></>} />
           <Route path='/login' element={<Login/>} />
+          <Route path='/checkout' element={<><Header/><Checkout/><Footer/></>} />
+          <Route path='/payment' element={<><Header/><Payment/></>} />
         </Routes>
       </Router>
     </div>
