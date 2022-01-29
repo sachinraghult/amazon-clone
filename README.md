@@ -2,12 +2,12 @@
 https://amazon-unofficial.herokuapp.com/
 
 ## `Guide`
---> Register to login
---> For payment use 
-      -> card number 4242 4242 4242 4242
-      -> expiry date 04/24 
-      -> cvc 242
-      -> zip 42424
+--> Register to login <br />
+--> For payment use <br />
+      -> card number 4242 4242 4242 4242 <br />
+      -> expiry date 04/24 <br />
+      -> cvc 242 <br />
+      -> zip 42424 <br />
       
 ![image](https://user-images.githubusercontent.com/69163882/151651363-9d7c0be1-c420-421b-bd3f-8fb16c1daa8e.png)
 
